@@ -32,6 +32,7 @@ obj-$(CONFIG_ARCH_MSM7X30) += gpiomux-v1.o gpiomux.o
 obj-$(CONFIG_ARCH_QSD8X50) += gpiomux-8x50.o gpiomux-v1.o gpiomux.o
 obj-$(CONFIG_ARCH_MSM8X60) += gpiomux-8x60.o gpiomux-v2.o gpiomux.o
 
+obj-$(CONFIG_MACH_MSM8960_MMI) += devices-mmi.o
 obj-$(CONFIG_MACH_MSM8960_MMI) += board-mmi.o
 obj-$(CONFIG_MACH_MSM8960_MMI) += board-mmi-gsbi.o
 obj-$(CONFIG_MACH_MSM8960_MMI) += board-mmi-i2c.o

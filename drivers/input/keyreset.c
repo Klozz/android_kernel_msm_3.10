@@ -242,6 +242,6 @@ static void __exit keyreset_exit(void)
 	return platform_driver_unregister(&keyreset_driver);
 }
 
-module_init(keyreset_init);
+subsys_initcall(keyreset_init);
 module_exit(keyreset_exit);
 

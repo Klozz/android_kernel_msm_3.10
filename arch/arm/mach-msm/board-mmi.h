@@ -41,5 +41,7 @@ extern struct clk_lookup *mmi_init_clocks_from_dt(int *size);
 extern void mmi_display_init(struct msm_fb_platform_data *msm_fb_pdata,
 			struct mipi_dsi_platform_data *mipi_dsi_pdata);
 
+/* from board-mmi-i2s.c */
+extern void mmi_i2s_dai_init(void);
 #endif
 

@@ -41,3 +41,4 @@ obj-$(CONFIG_MACH_MSM8960_MMI) += board-mmi-i2c.o
 obj-$(CONFIG_MACH_MSM8960_MMI) += board-mmi-i2s.o
 obj-$(CONFIG_MACH_MSM8960_MMI) += board-mmi-keypad.o
 obj-$(CONFIG_MACH_MSM8960_MMI) += board-mmi-pmic.o
+obj-$(CONFIG_VIB_TIMED) += board-mmi-vibrator.o

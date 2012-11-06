@@ -43,5 +43,13 @@ extern void mmi_display_init(struct msm_fb_platform_data *msm_fb_pdata,
 
 /* from board-mmi-i2s.c */
 extern void mmi_i2s_dai_init(void);
+
+/* from board-mmi-vibrator.c */
+#ifdef CONFIG_VIB_TIMED
+void __init mmi_vibrator_init(void);
+#else
+static inline void mmi_vibrator_init(void) { }
+#endif
+
 #endif
 

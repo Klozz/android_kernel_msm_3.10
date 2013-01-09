@@ -23,6 +23,14 @@ config TOUCHSCREEN_SY3200
 
 	  If unsure, say N.
 
+config TOUCHSCREEN_SY3400
+	tristate "Synaptics 34xx Touchscreen Driver"
+	depends on I2C
+	help
+	  Say Y here if you have an Synaptics 34xx touchscreen.
+
+	  If unsure, say N.
+
 config TOUCHSCREEN_ATMXT
 	tristate "Atmel mXT Touchscreen Driver"
 	depends on I2C

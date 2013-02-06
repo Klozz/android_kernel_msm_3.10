@@ -48,7 +48,8 @@ struct synaptics_dsx_platform_data {
 	bool regulator_en;
 	bool i2c_pull_up;
 	unsigned irq_gpio;
-	unsigned long irq_flags;
+	u32 irq_flags;
+	u32 reset_flags;
 	unsigned reset_gpio;
 	int (*gpio_config)(unsigned gpio, bool configure);
 	struct synaptics_dsx_cap_button_map *cap_button_map;

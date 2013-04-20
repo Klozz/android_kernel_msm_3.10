@@ -2163,7 +2163,7 @@ static int synaptics_rmi4_f11_init(struct synaptics_rmi4_data *rmi4_data,
 			MAX_ABS_MT_TOUCH_MAJOR, 0, 0);
 #endif
 
-	input_set_events_per_packet(rmi4_data->input_dev, 180);
+	input_set_events_per_packet(rmi4_data->input_dev, 64);
 
 	return retval;
 }
@@ -2320,7 +2320,7 @@ static int synaptics_rmi4_f12_init(struct synaptics_rmi4_data *rmi4_data,
 			rmi4_data->num_of_fingers - 1, 0, 0);
 
 	/* FIXME replace hard coded value with querying */
-	input_set_events_per_packet(rmi4_data->input_dev, 180);
+	input_set_events_per_packet(rmi4_data->input_dev, 64);
 
 	return retval;
 }

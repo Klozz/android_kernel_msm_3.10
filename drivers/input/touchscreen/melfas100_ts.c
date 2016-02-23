@@ -1230,7 +1230,7 @@ static int mms_ts_probe(struct i2c_client *client,
 		info->max_y = 1280;
 	}
 
-	input_mt_init_slots(input_dev, MAX_FINGERS);
+	input_mt_init_slots(input_dev, MAX_FINGERS,0);
 
 	snprintf(info->phys, sizeof(info->phys),
 		 "%s/input0", dev_name(&client->dev));

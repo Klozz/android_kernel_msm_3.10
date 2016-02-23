@@ -765,7 +765,7 @@ out:
 	release_firmware(fw);
 }
 
-static int __devinit mms_ts_config(struct mms_ts_info *info, bool nowait)
+static int mms_ts_config(struct mms_ts_info *info, bool nowait)
 {
 	struct i2c_client *client = info->client;
 	int ret = 0;
@@ -1176,7 +1176,7 @@ melfas_debug_ic_reflash_store_fail:
 static DEVICE_ATTR(ic_reflash, S_IWUSR | S_IRUGO,
 		melfas_debug_ic_reflash_show, melfas_debug_ic_reflash_store);
 
-static int __devinit mms_ts_probe(struct i2c_client *client,
+static int mms_ts_probe(struct i2c_client *client,
 				  const struct i2c_device_id *id)
 {
 	struct i2c_adapter *adapter = to_i2c_adapter(client->dev.parent);

@@ -1428,7 +1428,7 @@ err_check_functionality_failed:
 	return ret;
 }
 
-static int __devexit mms_ts_remove(struct i2c_client *client)
+static int mms_ts_remove(struct i2c_client *client)
 {
 	struct mms_ts_info *info = i2c_get_clientdata(client);
 	u64 *debug_ptr1;
@@ -1537,7 +1537,7 @@ MODULE_DEVICE_TABLE(i2c, mms_ts_id);
 
 static struct i2c_driver mms_ts_driver = {
 	.probe		= mms_ts_probe,
-	.remove		= __devexit_p(mms_ts_remove),
+	.remove		= mms_ts_remove,
 	.driver = {
 		.name = MELFAS_TS_NAME,
 #if defined(CONFIG_PM) && !defined(CONFIG_HAS_EARLYSUSPEND)

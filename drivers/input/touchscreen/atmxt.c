@@ -39,6 +39,7 @@
 #ifdef CONFIG_HAS_EARLYSUSPEND
 #include <linux/earlysuspend.h>
 #endif
+#include <linux/earlysuspend.h>
 
 #define FAMILY_ID 0x82
 

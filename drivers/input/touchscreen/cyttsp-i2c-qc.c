@@ -2524,7 +2524,7 @@ static int cyttsp_initialize(struct i2c_client *client, struct cyttsp *ts)
 			ABS_MT_TOUCH_MAJOR, 0, CY_MAXZ, 0, 0);
 		input_set_abs_params(input_device,
 			ABS_MT_WIDTH_MAJOR, 0, CY_LARGE_TOOL_WIDTH, 0, 0);
-		input_mt_init_slots(input_device, CY_NUM_TRK_ID);
+		input_mt_init_slots(input_device, CY_NUM_TRK_ID,0);
 		if (ts->platform_data->use_trk_id) {
 			input_set_abs_params(input_device,
 				ABS_MT_TRACKING_ID, 0, CY_NUM_TRK_ID, 0, 0);

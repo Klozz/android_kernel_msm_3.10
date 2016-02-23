@@ -509,3 +509,4 @@ MODULE_LICENSE("GPL");
 /* MODULE_LICENSE("Proprietary. (C) 2013 - Motorola Mobility LLC"); */
 MODULE_AUTHOR("Motorola Mobility LLC");
 MODULE_DESCRIPTION("touchx module");
+

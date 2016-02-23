@@ -6,3 +6,4 @@ struct touchxs {
 };
 
 extern struct touchxs touchxp;
+

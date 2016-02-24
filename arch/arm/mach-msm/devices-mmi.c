@@ -10,14 +10,18 @@
  * GNU General Public License for more details.
  *
  */
-
 #include <asm/mach-types.h>
+#include <linux/dma-mapping.h>
+#include <linux/persistent_ram.h>
 #include <linux/platform_device.h>
 #include <linux/w1-gpio.h>
+#include <linux/platform_data/mmi-factory.h>
+#include <linux/platform_data/ram_console.h>
+
 #include <mach/board.h>
+#include <mach/dma.h>
 #include <mach/irqs-8960.h>
 #include <mach/msm_iomap-8960-mmi.h>
-#include <linux/platform_data/ram_console.h>
 
 static struct resource resources_uart_gsbi2[] = {
 	{
@@ -100,6 +104,45 @@ struct platform_device mmi_msm8960_device_uart_gsbi8 = {
 	.resource	= resources_uart_gsbi8,
 };
 
+/* GSBI 5 used into UARTDM Mode */
+static struct resource msm_uart_dm5_resources[] = {
+	{
+		.start	= MSM_UART5DM_PHYS,
+		.end	= MSM_UART5DM_PHYS + PAGE_SIZE - 1,
+		.name	= "uartdm_resource",
+		.flags	= IORESOURCE_MEM,
+	},
+	{
+		.start	= GSBI5_UARTDM_IRQ,
+		.end	= GSBI5_UARTDM_IRQ,
+		.flags	= IORESOURCE_IRQ,
+	},
+	{
+		.start	= MSM_GSBI5_PHYS,
+		.end	= MSM_GSBI5_PHYS + 4 - 1,
+		.name	= "gsbi_resource",
+		.flags	= IORESOURCE_MEM,
+	},
+	{
+		.start	= DMOV_HSUART_GSBI5_TX_CRCI,
+		.end	= DMOV_HSUART_GSBI5_RX_CRCI,
+		.name	= "uartdm_crci",
+		.flags	= IORESOURCE_DMA,
+	},
+};
+
+static u64 msm_uart_dm5_dma_mask = DMA_BIT_MASK(32);
+struct platform_device mmi_msm8960_device_uart_dm5 = {
+	.name	= "msm_serial_hs",
+	.id	= 0,
+	.num_resources	= ARRAY_SIZE(msm_uart_dm5_resources),
+	.resource	= msm_uart_dm5_resources,
+	.dev	= {
+		.dma_mask		= &msm_uart_dm5_dma_mask,
+		.coherent_dma_mask	= DMA_BIT_MASK(32),
+	},
+};
+
 static struct w1_gpio_platform_data mmi_w1_gpio_device_pdata = {
 	.pin = -1,
 	.is_open_drain = 0,
@@ -137,3 +180,27 @@ struct persistent_ram mmi_ram_console_pram = {
 };
 
 #endif
+
+static struct mmi_factory_gpio_entry mmi_factory_gpio_entries[] = {
+	{
+		.number = 75,
+		.direction = GPIOF_DIR_OUT,
+		.value = 1,
+		.name = "factory_kill",
+	},
+};
+
+static struct mmi_factory_platform_data mmi_factory_pdata = {
+	.num_gpios = ARRAY_SIZE(mmi_factory_gpio_entries),
+	.gpios = mmi_factory_gpio_entries,
+
+};
+
+struct platform_device mmi_factory_device = {
+	.name           = "mmi_factory",
+	.id             = -1,
+	.dev = {
+		.platform_data = &mmi_factory_pdata,
+	},
+};
+

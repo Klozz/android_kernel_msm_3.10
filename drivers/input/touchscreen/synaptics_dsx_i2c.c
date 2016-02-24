@@ -1658,7 +1658,7 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 			/* palm detected, suppress the touch down events */
 			if (rmi4_data->palm_suppression_enabled
 				&& is_palm_detect == true)
-				return touch_count;
+				goto gexit;
 
 			x = finger_data[index+1] | (finger_data[index+2] << 8);
 			y = finger_data[index+3] | (finger_data[index+4] << 8);
@@ -1699,7 +1699,7 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 					if (touch_down == true)
 						synaptics_dsx_release_all(
 							rmi4_data);
-					return touch_count;
+					goto gexit;
 				}
 			}
 		}
@@ -1763,6 +1763,7 @@ static int synaptics_rmi4_f12_abs_report(struct synaptics_rmi4_data *rmi4_data,
 	else if (!touch_count)
 		is_palm_detect = false;
 
+ gexit:
 	if (touchxp.touchx)
 		mutex_unlock(&touchxp.virtual_touch_mutex);
 
